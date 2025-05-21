@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reservasi - MUAR</title>
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Google Font Poppins -->
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
@@ -24,8 +26,12 @@
     }
 
     .nav-link {
+      font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      color: #4a3f35 !important;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      color: #4a3f35;
+      transition: color 0.3s ease;
     }
 
     .nav-link:hover {
@@ -122,7 +128,7 @@
       <div class="logo-icon"></div>
       <div>
         <div class="logo-text">muar</div>
-        <div class="logo-tagline">BE FAST BE PRETTY</div>
+        <div class="logo-tagline">Reservasi</div>
       </div>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -130,10 +136,10 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html">home</a></li>
-        <li class="nav-item"><a class="nav-link" href="pesan_layanan.html">Pesan layanan</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Daftar layanan</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="MUA_Reservation.html">MUA Reservation</a></li>
+        <li class="nav-item"><a class="nav-link" href="MUA_Schedule.html">MUA Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_us.html">About us</a></li>
       </ul>
     </div>
   </div>
@@ -146,36 +152,36 @@
 
     <!-- Simulasi Info MUA -->
     <div class="card mua-info mb-4 p-3">
-      <h5 id="mua-nama">Nama MUA</h5>
-      <p id="mua-keahlian">Keahlian: </p>
-      <p id="mua-tarif">Tarif: </p>
-      <p id="mua-lokasi">Lokasi: </p>
+      <h5 id="mua-Name">MUA Name</h5>
+      <p id="mua-Expertise">Expertise: </p>
+      <p id="mua-Rate">Rate: </p>
+      <p id="mua-Location">Location: </p>
     </div>
 
     <form>
       <input type="hidden" id="input-id-mua" name="id_mua" />
 
       <div class="mb-3">
-        <label for="nama">Nama Lengkap</label>
+        <label for="nama">Full Name</label>
         <input type="text" class="form-control" name="nama" id="nama" required />
       </div>
 
       <div class="mb-3">
-        <label for="kontak">No. WhatsApp / Kontak</label>
+        <label for="kontak">No. WhatsApp / Contact</label>
         <input type="text" class="form-control" name="kontak" id="kontak" required />
       </div>
 
       <div class="mb-3">
-        <label for="alamat">Alamat Lengkap</label>
+        <label for="alamat">Full Address</label>
         <textarea class="form-control" name="alamat" id="alamat" rows="3" required></textarea>
       </div>
 
       <div class="mb-3">
-        <label for="tanggal">Tanggal Layanan</label>
+        <label for="tanggal">Reservation Date</label>
         <input type="date" class="form-control" name="tanggal_layanan" id="tanggal" required />
       </div>
 
-      <button type="submit" class="btn btn-pesan w-100 mt-3">Kirim Reservasi</button>
+      <button type="submit" class="btn btn-pesan w-100 mt-3">Send Reservation</button>
     </form>
   </div>
 </section>
@@ -186,38 +192,58 @@
 <!-- Script ambil ID MUA -->
 <script>
   const urlParams = new URLSearchParams(window.location.search);
-  const id_mua = urlParams.get('id_mua');
+  const id_mua = urlParams.get('mua');
   document.getElementById("input-id-mua").value = id_mua;
 
   // Simulasi data MUA (buat tampilan dulu sebelum backend)
   const dataMUA = {
-    1: {
-      nama: "Nina MakeUp Artist",
-      keahlian: "Makeup Natural",
-      tarif: "Rp 500.000",
-      lokasi: "Jakarta"
+    nina: {
+      Name: "Nina MakeUp Artist",
+      Expertise: "Makeup Natural",
+      Rate: "Rp 500.000",
+      Location: "Jakarta"
     },
-    2: {
-      nama: "Dimas Glam Studio",
-      keahlian: "Makeup Glam",
-      tarif: "Rp 750.000",
-      lokasi: "Bandung"
+    dimas: {
+      Name: "Dimas Glam Studio",
+      Expertise: "Makeup Glam",
+      Rate: "Rp 750.000",
+      Location: "Bandung"
     },
-    3: {
-      nama: "Sari Beauty Expert",
-      keahlian: "Makeup Klasik & Elegan",
-      tarif: "Rp 600.000",
-      lokasi: "Surabaya"
+    sari: {
+      Name: "Sari Beauty Expert",
+      Expertise: "Makeup Klasik & Elegan",
+      Rate: "Rp 600.000",
+      Location: "Surabaya"
+    },
+    rina: {
+      Name: "Rina Artist",
+      Expertise: "Makeup Natural",
+      Rate: "Rp 550.000",
+      Location: "Yogyakarta"
+    },
+    bayu: {
+      Name: "Bayu Glam Studio",
+      Expertise: "Makeup Glam",
+      Rate: "Rp 800.000",
+      Location: "Jakarta"
+    },
+    tika: {
+      Name: "Tika Beauty",
+      Expertise: "Makeup Modern",
+      Rate: "Rp 650.000",
+      Location: "Bali"
     }
+
   };
 
   if (dataMUA[id_mua]) {
     const mua = dataMUA[id_mua];
-    document.getElementById('mua-nama').textContent = mua.nama;
-    document.getElementById('mua-keahlian').textContent = "Keahlian: " + mua.keahlian;
-    document.getElementById('mua-tarif').textContent = "Tarif: " + mua.tarif;
-    document.getElementById('mua-lokasi').textContent = "Lokasi: " + mua.lokasi;
+    document.getElementById('mua-Name').textContent = mua.Name;
+    document.getElementById('mua-Expertise').textContent = "Expertise: " + mua.Expertise;
+    document.getElementById('mua-Rate').textContent = "Rate: " + mua.Rate;
+    document.getElementById('mua-Location').textContent = "Location: " + mua.Location;
   }
 </script>
+
 </body>
 </html>

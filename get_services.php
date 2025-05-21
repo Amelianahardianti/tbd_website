@@ -1,6 +1,11 @@
 <?php
 include('koneksi.php');
 
+// Cek koneksi database
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 // Query untuk mengambil data layanan yang dipesan
 $sql = "SELECT L.id_layanan, P.nama as pelanggan, M.nama as mua, L.tanggal_layanan
         FROM Layanan L
@@ -14,6 +19,9 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $services[] = $row;
     }
+} else {
+    // Jika tidak ada data
+    $services = [];
 }
 
 // Kirimkan data dalam format JSON ke front-end
