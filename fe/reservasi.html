@@ -7,9 +7,6 @@
 
   <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
@@ -18,13 +15,11 @@
       padding-top: 80px;
       font-family: 'Poppins', sans-serif;
     }
-
     nav {
       background-color: rgba(255, 255, 255, 0.9) !important;
       backdrop-filter: blur(10px);
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-
     .nav-link {
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
@@ -33,24 +28,20 @@
       color: #4a3f35;
       transition: color 0.3s ease;
     }
-
     .nav-link:hover {
       color: #b79ea6 !important;
     }
-
     .logo-container {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-
     .logo-icon {
       width: 40px;
       height: 40px;
-      background: url('assets/logo-muar.png') no-repeat center center;
+      background: url('../assets/logo-muar.png') no-repeat center center;
       background-size: contain;
     }
-
     .logo-text {
       font-family: 'Didot', serif;
       font-weight: 700;
@@ -59,7 +50,6 @@
       line-height: 1;
       text-transform: lowercase;
     }
-
     .logo-tagline {
       font-size: 0.65rem;
       letter-spacing: 0.1em;
@@ -67,16 +57,14 @@
       color: #b79ea6;
       margin-top: -4px;
     }
-
     .form-wrapper {
       background-color: #fff;
       border-radius: 20px;
       padding: 2.5rem;
       max-width: 720px;
-      margin: 0 auto;
+      margin: 0 auto 3rem;
       box-shadow: 0 8px 24px rgba(0,0,0,0.05);
     }
-
     .form-title {
       font-family: 'Didot', serif;
       color: #4a3f35;
@@ -84,11 +72,9 @@
       text-align: center;
       margin-bottom: 2rem;
     }
-
     label {
       font-weight: 500;
     }
-
     .btn-pesan {
       background-color: #b79ea6;
       color: white;
@@ -96,32 +82,30 @@
       font-weight: 600;
       transition: 0.3s;
     }
-
     .btn-pesan:hover {
       background-color: #a07584;
       color: white;
     }
-
     .card.mua-info {
       background-color: #f7e9ec;
       border: none;
       border-radius: 15px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
     }
-
     .card.mua-info h5 {
       color: #5a3f45;
       font-weight: 600;
+      margin-bottom: 0.5rem;
     }
-
     .card.mua-info p {
       color: #6f5a5a;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
   </style>
 </head>
 <body>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
     <a class="navbar-brand logo-container" href="#">
@@ -145,20 +129,18 @@
   </div>
 </nav>
 
-<!-- Form Reservasi -->
-<section class="container mt-5 mb-5">
+<section class="container mt-5">
   <div class="form-wrapper">
     <h2 class="form-title">Reservasi Layanan MUA</h2>
 
-    <!-- Simulasi Info MUA -->
-    <div class="card mua-info mb-4 p-3">
-      <h5 id="mua-Name">MUA Name</h5>
-      <p id="mua-Expertise">Expertise: </p>
-      <p id="mua-Rate">Rate: </p>
-      <p id="mua-Location">Location: </p>
+    <div class="card mua-info">
+      <h5 id="mua-Name">Loading...</h5>
+      <p id="mua-Expertise"></p>
+      <p id="mua-Rate"></p>
+      <p id="mua-Location"></p>
     </div>
 
-    <form>
+    <form method="POST" action="../be/submit_booking.php" id="formReservasi">
       <input type="hidden" id="input-id-mua" name="id_mua" />
 
       <div class="mb-3">
@@ -186,64 +168,74 @@
   </div>
 </section>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Script ambil ID MUA -->
 <script>
   const urlParams = new URLSearchParams(window.location.search);
-  const id_mua = urlParams.get('mua');
+  const id_mua = urlParams.get('id_mua');
   document.getElementById("input-id-mua").value = id_mua;
 
-  // Simulasi data MUA (buat tampilan dulu sebelum backend)
-  const dataMUA = {
-    nina: {
-      Name: "Nina MakeUp Artist",
-      Expertise: "Makeup Natural",
-      Rate: "Rp 500.000",
-      Location: "Jakarta"
-    },
-    dimas: {
-      Name: "Dimas Glam Studio",
-      Expertise: "Makeup Glam",
-      Rate: "Rp 750.000",
-      Location: "Bandung"
-    },
-    sari: {
-      Name: "Sari Beauty Expert",
-      Expertise: "Makeup Klasik & Elegan",
-      Rate: "Rp 600.000",
-      Location: "Surabaya"
-    },
-    rina: {
-      Name: "Rina Artist",
-      Expertise: "Makeup Natural",
-      Rate: "Rp 550.000",
-      Location: "Yogyakarta"
-    },
-    bayu: {
-      Name: "Bayu Glam Studio",
-      Expertise: "Makeup Glam",
-      Rate: "Rp 800.000",
-      Location: "Jakarta"
-    },
-    tika: {
-      Name: "Tika Beauty",
-      Expertise: "Makeup Modern",
-      Rate: "Rp 650.000",
-      Location: "Bali"
-    }
-
-  };
-
-  if (dataMUA[id_mua]) {
-    const mua = dataMUA[id_mua];
-    document.getElementById('mua-Name').textContent = mua.Name;
-    document.getElementById('mua-Expertise').textContent = "Expertise: " + mua.Expertise;
-    document.getElementById('mua-Rate').textContent = "Rate: " + mua.Rate;
-    document.getElementById('mua-Location').textContent = "Location: " + mua.Location;
+  if (!id_mua) {
+    document.querySelector('.mua-info').innerHTML = '<p class="text-danger">MUA tidak ditemukan</p>';
+  } else {
+    fetch(`../be/submit_booking.php?id_mua=${id_mua}`)
+      .then(res => res.json())
+      .then(mua => {
+        if (mua.error) {
+          document.querySelector('.mua-info').innerHTML = `<p class="text-danger">${mua.error}</p>`;
+          return;
+        }
+        document.getElementById('mua-Name').textContent = mua.nama;
+        document.getElementById('mua-Expertise').textContent = "Expertise: " + mua.keahlian;
+        document.getElementById('mua-Rate').textContent = "Rate: Rp " + parseFloat(mua.tarif).toLocaleString('id-ID');
+        document.getElementById('mua-Location').textContent = "Location: " + mua.lokasi;
+      })
+      .catch(() => {
+        document.querySelector('.mua-info').innerHTML = '<p class="text-danger">Gagal mengambil data MUA</p>';
+      });
   }
+
+ const form = document.getElementById('formReservasi');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.text())
+  .then(response => {
+    if (response.toLowerCase().includes('berhasil')) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: response,
+        confirmButtonColor: '#b79ea6'
+      });
+      form.reset();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Gagal!',
+        text: response,
+        confirmButtonColor: '#b79ea6'
+      });
+    }
+  })
+  .catch(() => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error!',
+      text: 'Gagal mengirim reservasi.',
+      confirmButtonColor: '#b79ea6'
+    });
+  });
+});
+
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 </html>

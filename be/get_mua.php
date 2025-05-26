@@ -6,22 +6,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query untuk mengambil data MUA dari database
-$sql = "SELECT id_mua, nama, keahlian FROM MUA";
+// Query untuk mengambil data MUA (termasuk tarif, lokasi, dan foto)
+$sql = "SELECT id_mua, nama, keahlian, tarif, lokasi, foto FROM mua";
 $result = $conn->query($sql);
 
 $muaData = [];
 if ($result->num_rows > 0) {
-    // Ambil data MUA
     while($row = $result->fetch_assoc()) {
         $muaData[] = $row;
     }
-} else {
-    // Jika tidak ada data
-    $muaData = [];
 }
 
 // Kirimkan data dalam format JSON ke front-end
+header('Content-Type: application/json');
 echo json_encode($muaData);
 
 // Menutup koneksi

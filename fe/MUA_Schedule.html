@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tentang Kami - MUAR</title>
+  <title>Daftar Layanan - MUAR</title>
 
- <!-- Bootstrap CSS CDN -->
+  <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
 
   <style>
     body {
@@ -48,7 +47,7 @@
     .logo-icon {
       width: 40px;
       height: 40px;
-      background: url('assets/logo-muar.png') no-repeat center center;
+      background: url('../assets/logo-muar.png') no-repeat center center;
       background-size: contain;
     }
 
@@ -71,63 +70,56 @@
 
     .section-title {
       font-family: 'Didot', serif;
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #4a3f35;
       text-align: center;
       margin-bottom: 2rem;
     }
 
-    .about-wrapper {
+    .card-wrapper {
       max-width: 860px;
       margin: 0 auto;
-      padding: 2.5rem;
-      background-color: #ffffff;
+      padding: 2rem;
+      background: #fff;
       border-radius: 20px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     }
 
-    .about-wrapper p {
-      color: #5f4b4b;
-      line-height: 1.8;
-      font-size: 1.05rem;
+    .table thead {
+      background-color: #e9d6d9;
+      color: #5b3d45;
     }
 
-    .about-wrapper h4 {
-      color: #a4717b;
-      font-weight: 600;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
+    .table tbody tr:hover {
+      background-color: #f6ecee;
     }
 
-    .team {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 2rem;
+    .status {
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 25px;
+      font-size: 0.85rem;
     }
 
-    .team-member {
-      text-align: center;
-      max-width: 200px;
+    .status.selesai {
+      background-color: #d4edda;
+      color: #155724;
     }
 
-    .team-member img {
-      width: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #e9d6d9;
+    .status.sedang {
+      background-color: #fff3cd;
+      color: #856404;
     }
 
-    .team-member h6 {
-      margin-top: 0.8rem;
-      font-weight: 600;
-      color: #5b3f45;
+    .status.dibatalkan {
+      background-color: #f8d7da;
+      color: #721c24;
     }
 
-    .team-member span {
-      font-size: 0.9rem;
-      color: #8d7a7a;
+    @media (max-width: 576px) {
+      .table th, .table td {
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
@@ -159,46 +151,47 @@
 
 <!-- Content -->
 <section class="container mt-5 mb-5">
-  <div class="about-wrapper">
-    <h2 class="section-title">About MUAR</h2>
-    <p>
-      MUAR is a Makeup Artist reservation platform designed to help you feel confident on every special occasion. With a network of professional MUAs across various cities, we provide personalized service and the best quality with just a few clicks.
-    </p>
+  <div class="card-wrapper">
+    <h2 class="section-title">Daftar Layanan & Jadwal Booking</h2>
 
-    <h4>Our Vision</h4>
-    <p>
-      To become the most trusted platform for professional makeup services that are easy, fast, and of high quality.
-    </p>
-
-    <h4>Our Mission</h4>
-    <ul>
-      <li>Connecting clients with high-quality MUAs.</li>
-      <li>Providing a practical and comfortable reservation experience..</li>
-      <li>upporting local MUAs to grow through technology..</li>
-    </ul>
-
-    <h4>Our Team</h4>
-    <div class="team">
-      <div class="team-member">
-        <img src="assets/tim1.jpg" alt="Founder" />
-        <h6>Rahma</h6>
-        <span>Founder & CEO</span>
-      </div>
-      <div class="team-member">
-        <img src="assets/tim2.jpg" alt="Bussines Manager" />
-        <h6>Putri</h6>
-        <span>Creative Director</span>
-      </div>
-      <div class="team-member">
-        <img src="assets/tim3.jpg" alt="Engineer" />
-        <h6>Amelia</h6>
-        <span>Frontend Developer</span>
-      </div>
-    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nama MUA</th>
+          <th>Keahlian</th>
+          <th>Tanggal Booking</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="layanan-table">
+        <!-- Data akan dimasukkan di sini dengan JavaScript -->
+      </tbody>
+    </table>
   </div>
 </section>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Simulasi Data Fetch dari PHP -->
+<script>
+  fetch('get_services.php')  // Mengambil data JSON dari backend PHP
+    .then(response => response.json())  // Parsing JSON ke objek JavaScript
+    .then(data => {
+      const tbody = document.getElementById("layanan-table");
+      data.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.nama_mua}</td>
+          <td>${item.keahlian}</td>
+          <td>${item.tanggal_layanan}</td>
+          <td><span class="status ${item.status.toLowerCase()}">${item.status}</span></td>
+        `;
+        tbody.appendChild(tr);  // Menambahkan baris ke dalam tabel
+      });
+    })
+    .catch(error => console.log('Error:', error));  // Error handling
+</script>
+
 </body>
 </html>
