@@ -3,46 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tentang Kami - MUAR</title>
+  <title>About Us - MUAR</title> 
 
- <!-- Bootstrap CSS CDN -->
+  <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-
   <style>
+    :root {
+      --primary-color: #b79ea6;
+      --primary-dark: #8a6d75;
+      --secondary-color: #e9d6d9;
+      --text-color: #4a3f35;
+      --light-bg: #faf8f8;
+    }
+    
     body {
-      background-color: #faf8f8;
-      padding-top: 80px;
+      background-color: var(--light-bg);
+      padding-top: 70px;
       font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
     }
 
     nav {
-      background-color: rgba(255, 255, 255, 0.9) !important;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: saturate(180%) blur(10px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 0;
     }
 
-    .nav-link {
-      font-family: 'Poppins', sans-serif;
+    nav .nav-link {
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       padding: 0.5rem 1rem;
-      color: #4a3f35;
-      transition: color 0.3s ease;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+      position: relative;
     }
 
-    .nav-link:hover {
-      color: #b79ea6 !important;
+    nav .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    nav .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    nav .nav-link:hover:after {
+      width: 100%;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .logo-icon {
@@ -53,20 +77,36 @@
     }
 
     .logo-text {
-      font-family: 'Didot', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 1.2rem;
-      color: #b79ea6;
-      text-transform: lowercase;
+      font-size: 1.3rem;
+      color: var(--primary-color);
       line-height: 1;
+      text-transform: lowercase;
     }
 
     .logo-tagline {
       font-size: 0.65rem;
       letter-spacing: 0.1em;
       font-weight: 600;
-      color: #b79ea6;
+      color: var(--primary-color);
       margin-top: -4px;
+    }
+
+    .btn-primary-custom {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 0.5rem 1.5rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary-custom:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(183, 158, 166, 0.3);
     }
 
     .section-title {
@@ -99,42 +139,51 @@
       margin-bottom: 1rem;
     }
 
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 2rem;
+      color: var(--text-color);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+
     .team {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 2rem;
-}
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
 
-.team-member {
-  text-align: center;
-  max-width: 200px;
-  width: 200px; /* pastikan setiap team member punya lebar sama */
-}
+    .team-member {
+      text-align: center;
+      max-width: 200px;
+      width: 200px;
+    }
 
-.team-member img {
-  width: 150px;   /* ukuran gambar tetap sama */
-  height: 150px;  /* agar gambar bulat sempurna */
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #e9d6d9;
-  display: block;
-  margin: 0 auto;
-}
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #e9d6d9;
+      display: block;
+      margin: 0 auto;
+    }
 
-.team-member h6 {
-  margin-top: 0.8rem;
-  font-weight: 600;
-  color: #5b3f45;
-  font-size: 1rem;
-}
+    .team-member h6 {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      color: #5b3f45;
+      font-size: 1rem;
+    }
 
-.team-member span {
-  font-size: 0.9rem;
-  color: #8d7a7a;
-}
-
+    .team-member span {
+      font-size: 0.9rem;
+      color: #8d7a7a;
+    }
   </style>
 </head>
 <body>
@@ -157,7 +206,10 @@
         <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="MUA_Reservation.html">MUA Reservation</a></li>
         <li class="nav-item"><a class="nav-link" href="MUA_Schedule.html">MUA Schedule</a></li>
-        <li class="nav-item"><a class="nav-link" href="about_us.html">About us</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about_us.html">About us</a></li>
+        <li class="nav-item ms-lg-3">
+          <a href="login.html" class="btn btn-primary-custom">Login</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -168,7 +220,7 @@
   <div class="about-wrapper">
     <h2 class="section-title">About MUAR</h2>
     <p>
-      MUAR is a Makeup Artist reservation platform designed to help you feel confident on every special occasion. With a network of professional MUAs across various cities, we provide personalized service and the best quality with just a few clicks.
+      MUAR is a makeup artist reservation platform designed to help you feel confident on every special occasion. With a network of professional MUAs across various cities, we provide personalized service and the best quality with just a few clicks.
     </p>
 
     <h4>Our Vision</h4>
@@ -179,8 +231,8 @@
     <h4>Our Mission</h4>
     <ul>
       <li>Connecting clients with high-quality MUAs.</li>
-      <li>Providing a practical and comfortable reservation experience..</li>
-      <li>upporting local MUAs to grow through technology..</li>
+      <li>Providing a practical and comfortable reservation experience.</li>
+      <li>Supporting local MUAs to grow through technology.</li>
     </ul>
 
     <h4>Our Team</h4>
@@ -191,12 +243,12 @@
         <span>Founder</span>
       </div>
       <div class="team-member">
-        <img src="../assets/tim2.jpg" alt="Bussines Manager" />
+        <img src="../assets/tim2.jpg" alt="Creative Director" />
         <h6>Putri</h6>
         <span>Creative Director</span>
       </div>
       <div class="team-member">
-        <img src="../assets/tim3.jpg" alt="Engineer" />
+        <img src="../assets/tim3.jpg" alt="Frontend Developer" />
         <h6>Amelia</h6>
         <span>Frontend Developer</span>
       </div>

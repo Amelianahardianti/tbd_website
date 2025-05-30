@@ -13,160 +13,180 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
+     :root {
+      --primary-color: #b79ea6;
+      --primary-dark: #8a6d75;
+      --secondary-color: #e9d6d9;
+      --text-color: #4a3f35;
+      --light-bg: #faf8f8;
+    }
+    
     body {
-      background-color: #faf8f8;
+      background-color: var(--light-bg);
       padding-top: 70px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
     }
 
     nav {
-      background-color: rgba(255, 255, 255, 0.85) !important;
+      background-color: rgba(255, 255, 255, 0.95) !important;
       backdrop-filter: saturate(180%) blur(10px);
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 0;
     }
 
-    /* Navbar links */
     nav .nav-link {
-      font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       padding: 0.5rem 1rem;
-      color: #4a3f35;
-      transition: color 0.3s ease;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     nav .nav-link:hover {
-      color: #b79ea6;
+      color: var(--primary-color);
     }
 
-    /* Logo MUAR */
+    nav .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    nav .nav-link:hover:after {
+      width: 100%;
+    }
+
     .logo-container {
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
+
     .logo-icon {
       width: 40px;
       height: 40px;
       background: url('../assets/logo-muar.png') no-repeat center center;
       background-size: contain;
     }
+
     .logo-text {
-      font-family: 'Didot', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 1.2rem;
-      color: #b79ea6;
-      text-transform: lowercase;
+      font-size: 1.3rem;
+      color: var(--primary-color);
       line-height: 1;
     }
+
     .logo-tagline {
       font-size: 0.65rem;
       letter-spacing: 0.1em;
       font-weight: 600;
-      color: #b79ea6;
+      color: var(--primary-color);
       margin-top: -4px;
+    }
+
+    .btn-primary-custom {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 0.5rem 1.5rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary-custom:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(183, 158, 166, 0.3);
     }
 
     /* Main title */
     .main-title {
-      font-family: 'Didot', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
       font-size: 3.5rem;
-      letter-spacing: 0.12em;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+      margin-top: 4rem;
+      margin-bottom: 1rem;
       color: #000;
       text-align: center;
+      animation: fadeInDown 1s ease forwards;
     }
 
-   /* Perbaikan card body */
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem; /* beri ruang dalam agar tidak menempel */
-  flex-grow: 1;
-}
+    /* Card */
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+      transition: transform 0.2s ease;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
+    }
+    .card-img-top {
+      border-radius: 12px 12px 0 0;
+      height: 220px;
+      object-fit: cover;
+      object-position: center;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 1rem;
+      flex-grow: 1;
+    }
+    .card-body h5.card-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 250;
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.4;
+      margin-bottom: 1.2rem;
+    }
 
-/* Font dan spacing teks */
-.card-body h5.card-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.card-text {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 250;
-  font-size: 1 rem;
-  color: #333;
-  line-height: 1.4;
-  margin-bottom: 1.2rem;
-}
-
-/* Tombol reservasi agar lebih besar dan mudah dilihat */
-.reservasi-btn {
-  background-color: #b79ea6;
-  color: white;
-  font-weight: 600;
-  padding: 12px 0;
-  border-radius: 0 0 0.5rem 0.5rem;
-  text-align: center;
-  display: block;
-  width: 100%;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.reservasi-btn:hover {
-  background-color: #a07584;
-}
-
-/* Card gambar */
-.card-img-top {
-  border-radius: 12px 12px 0 0;
-  height: 220px;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Card utama */
-.card {
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
-  transition: transform 0.2s ease;
-  margin: 10px 0;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
-}
-
-
-    /* Button styles */
+    /* Button reservasi */
     .reservasi-btn {
       background-color: #b79ea6;
-      border: none;
       color: white;
       font-weight: 600;
-      padding: 12px;
+      padding: 12px 0;
       border-radius: 0 0 0.5rem 0.5rem;
-      transition: background-color 0.3s ease;
+      text-align: center;
+      display: block;
       width: 100%;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      margin-top: auto; /* push button ke bawah card */
     }
-
     .reservasi-btn:hover {
       background-color: #a07584;
     }
 
-    /* Responsive card layout */
-  
+    /* Responsive grid gap */
+    .row.g-4 > * {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
   </style>
 </head>
 
@@ -194,11 +214,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav align-items-center">
         <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="MUA_Reservation.html">MUA Reservation</a></li>
+        <li class="nav-item"><a class="nav-link active" href="MUA_Reservation.html">MUA Reservation</a></li>
         <li class="nav-item"><a class="nav-link" href="MUA_Schedule.html">MUA Schedule</a></li>
         <li class="nav-item"><a class="nav-link" href="about_us.html">About us</a></li>
+        <li class="nav-item ms-lg-3">
+          <a href="login.html" class="btn btn-primary-custom">Login</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -210,21 +233,21 @@
 <!-- MUA List -->
 <div class="container mt-4">
   <div class="row g-4" id="mua-items">
-    <!-- Cards for MUA will be populated here -->
+    <!-- Cards will be injected here by JS -->
   </div>
 </div>
 
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- JavaScript for fetching MUA data from backend -->
+<!-- JS: Fetch MUA data from backend -->
 <script>
   function loadMuaData() {
-    fetch('../be/get_mua.php') // Fetch data from PHP backend
+    fetch('../be/get_mua.php')
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById('mua-items');
-        container.innerHTML = ''; // Clear loading text or previous content
+        container.innerHTML = '';
 
         if (data.length === 0) {
           container.innerHTML = '<p class="text-center">No MUA data available.</p>';
@@ -233,19 +256,18 @@
 
         data.forEach(mua => {
           const card = document.createElement('div');
-          card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';  // 4 cards per row on large screens
+          card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
           card.innerHTML = `
             <div class="card shadow-sm">
               <img src="../assets/${mua.foto}" alt="${mua.nama}" class="card-img-top" />
-              <div class="card-body">
+              <div class="card-body d-flex flex-column">
                 <h5 class="card-title">${mua.nama}</h5>
                 <p class="card-text">
                   <strong>Keahlian:</strong> ${mua.keahlian}<br />
                   <strong>Tarif:</strong> Rp ${parseFloat(mua.tarif).toLocaleString('id-ID')}<br />
                   <strong>Lokasi:</strong> ${mua.lokasi}
                 </p>
-                 <a href="reservasi.html?id_mua=${mua.id_mua}" class="reservasi-btn mt-auto ">Reservasi</a>
-
+                <a href="reservasi.html?id_mua=${mua.id_mua}" class="reservasi-btn">Reservasi</a>
               </div>
             </div>
           `;
@@ -253,14 +275,14 @@
         });
       })
       .catch(err => {
-        document.getElementById('mua-items').innerHTML = '<p class="text-center text-danger">Failed to load MUA data.</p>';
+        const container = document.getElementById('mua-items');
+        container.innerHTML = '<p class="text-center text-danger">Failed to load MUA data.</p>';
         console.error(err);
       });
   }
 
-  document.addEventListener('DOMContentLoaded', loadMuaData);  // Run the function when the page is loaded
+  document.addEventListener('DOMContentLoaded', loadMuaData);
 </script>
-
 
 </body>
 </html>
